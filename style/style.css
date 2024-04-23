@@ -7,53 +7,56 @@
         Calibri,
         'Trebuchet MS',
         sans-serif;
-    color-scheme: dark;
+    --color-scheme: dark;
     --sage-color: #70866F;
     --gold-color: #D9A02F;
     --cream-color: #E3DCCC;
     --navy-color: #818C9E;
-    
-
+    background-color: var(--sage-color);
+   
 }
 
-h1,
-h2,
-h3 {
+h1, h2, h3 {
     font-family: var(--Heading-font);
     color: var(--gold-color);
-
+    
 }
-
 body {
     font-family: var(--body-font);
-    inline-size: 60em;
+    inline-size: 40em;
     margin-inline: auto;
+
+}
+.lessons {
+    background-color: var(--cream-color);
+    width: 20em;
+    border-radius: 5px;
     padding: 2%;
-
-}
-main {
-    background-color: var(--sage-color);
-    padding: 3%;
-}
-
-p {
     font-size: 20px;
+    color: var(--sage-color);
+    line-height: 1.7em;
+}
+ul {
+    list-style: none;
+}
+li a {
+    text-decoration: none;
+    color: var(--sage-color);
+    font-weight: 700;
+    transition: all .5s ease;
+    padding: 1%;
+    
+}
+li a:hover {
+    border-bottom: 2px dashed var(--gold-color);
+    font-size: 1.2rem;
+    background-color: #cac4b4;
+    color: #5e6f5d;
 }
 footer {
-    color: var(--gold-color);
+    color: white;
+    font-size: 18px;
 }
-footer a {
-    text-decoration: none;
-    transition: .5s ease;
-    
-}
-footer a:hover {
-    font-weight: 500;
-    background-color: var(--gold-color);
-    color: black;
-    padding: 1%;
-    margin: 1em;
-    
-   
-    
+img, h1{
+    margin-bottom: -15px;
 }
