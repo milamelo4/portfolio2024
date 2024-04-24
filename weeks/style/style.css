@@ -21,6 +21,7 @@ h2,
 h3 {
     font-family: var(--Heading-font);
     color: var(--gold-color);
+    
 
 }
 
@@ -28,30 +29,32 @@ body {
     font-family: var(--body-font);
     inline-size: 60em;
     margin-inline: auto;
-    padding: 2%;
+    padding: 0.5%;
+    border: 1px solid white;
 
 }
 main {
     background-color: var(--sage-color);
     padding: 3%;
+    
+    
 }
 
 p {
     font-size: 20px;
 }
-footer {
-    color: var(--gold-color);
-}
 footer a {
     text-decoration: none;
-    transition: .5s ease;
+    padding-left: 0.00001%;
+    transition: .5s ease-in-out;
+    padding-right: .5%;
     
 }
 footer a:hover {
     font-weight: 500;
-    background-color: var(--gold-color);
-    color: black;
-    padding: 1%;
+    background-color: var(--sage-color);
+    color: white;
+    padding-left: 0.5%;
 }
 .exercise {
     font-size: 20px;
