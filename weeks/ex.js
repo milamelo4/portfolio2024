@@ -105,7 +105,7 @@ document.getElementById('btn7').addEventListener('click', () => {
 function countEvens(list) {
   let r = ''
   for (let i=0; i< list.length; i++) {
-    if (list[i] % 2 != 0) {
+    if (list[i] % 2 == 0) {
       r += list[i] + '<br>'
     }
     
