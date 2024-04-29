@@ -46,6 +46,9 @@ main {
 p {
     font-size: 20px;
 }
+footer {
+    padding-inline: 3%;
+}
 footer a {
     text-decoration: none;
     padding-left: 0.00001%;
@@ -62,6 +65,28 @@ footer a:hover {
 .exercise {
     font-size: 20px;
 }
+ .alert {
+     padding: 15px;
+     border: 1px solid #d6e9c6;
+     border-radius: 4px;
+     color: #3c763d;
+     background-color: #dff0d8;
+ }
+ .alert2 {
+     padding: 15px;
+     border: 1px solid #d6e9c6;
+     border-radius: 4px;
+     color: #856ff1;
+     background-color: #dff0d8;
+ }
+.alert3 {
+    padding: 15px;
+    border: 1px solid #d6e9c6;
+    border-radius: 4px;
+    color: #f16f6f;
+    background-color: #dff0d8;
+}
+/* Mobile View */
 @media only screen and (max-width: 600px) {
 
     /* Adjust styles for mobile view */
@@ -95,4 +120,5 @@ footer a:hover {
         margin-inline: 10px;
         padding-inline: 2%;
     }
+   
 }

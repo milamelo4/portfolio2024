@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="description" content="Notes Week 02">
+    <title>Week 02</title>
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="shortcut icon" href="../favicon-32x32.png" type="image/x-icon">
+</head>
+<body>
+    <main>
+        <h1>My Notes for week 02:</h1>
+        <h2>Readings</h2>
+        <ul>
+            <li>Modifying the document</li>
+            <li>LocalStorage, sessionStorage</li>
+            <li>Modules: Import and Export.</li>
+        </ul>
+        <h3>Modifying the document:</h3>
+        <p>Creating elements on the fly. To create DOM node there are two methods:</p>
+        <code>
+            let div = document.createElement('div') -> Creates a tag<br>
+            let textNode = document.createTextNode('Here I am') -> Appends the text to the tag.<br>
+            div.className = 'alert' -> Adds a class for styling.
+        </code>
+       <h3>Nodes in the DOM tree can have different types, including:</h3>
+
+        <p><strong>Element nodes:</strong> Represent HTML elements like &lt;div&gt;, &lt;p&gt;, &lt;h1&gt;, etc. An HTML tag.</p>
+        <p><STRONG>Text nodes:</STRONG> Contain textual content within an element.</p>
+        <P><STRONG>Attribute nodes:</STRONG> Represent attributes of an element, such as class, id, src, etc.</P>
+        <P><STRONG>Document nodes:</STRONG> Represent the entire document itself.</p>
+        
+        <h3>Here are more insertion methods, they specify different places where to insert: THIS IS NEW TO ME:</h3>
+
+        <ul>
+            <li>node.append(...nodes or strings) -> append nodes or strings at the end of node. Just like a list.</li>
+            <li>node.prepend(...nodes or strings) -> insert nodes or strings at the beginning of node</li>
+            <li>node.before(...nodes or strings) -> insert nodes or strings before node,</li>
+            <li>node.after(...nodes or strings) -> insert nodes or strings after node,</li>
+            <li>node.replaceWith(...nodes or strings) -> replaces node with the given nodes or strings.</li>
+        </ul>
+        <ol id="ol">
+            <li>0</li>
+            <li>1</li>
+            <li>2</li>
+        </ol>
+       <p><i>Check notes in Js for more info.</i></p>
+       <h3>insertAdjacentHTML/Text/Element</h3>
+       <p>elem.insertAdjacentHTML(where, html)</p>
+       <p>The first parameter is a code word, specifying where to insert relative to elem. Must be one of the following:</p>
+
+        <ul>
+            <li>"beforebegin" -> insert html immediately before elem,</li>
+            <li>"afterbegin" -> insert html into elem, at the beginning,</li>
+            <li>"beforeend" -> insert html into elem, at the end,</li>
+            <li>"afterend" -> insert html immediately after elem.</li>
+        </ul>
+        <aside id="aside"></aside>
+        <p>So here’s an alternative variant of showing a message:</p>
+
+        <code>
+            document.body.insertAdjacentHTML("afterbegin", `&lt;div class="alert"&gt;
+                <strong>Hi there!</strong> You've read an important message.
+            &lt;/div&gt;`);
+        </code>
+        <p>All insertion methods automatically remove the node from the old place:</p>
+        <p>Original:</p> </p>&lt;div id="first"&gt;First&lt;/div&gt; <br>
+        &lt;div id="second"&gt;Second&gt/div&gt;<p> 
+        <p>Swapping with JS:</p>
+        <div id="first">First</div>
+        <div id="second">Second</div>
+
+        <h3>Cloning nodes: cloneNode</h3>
+        <p>Sometimes when we have a big element, that may be faster and simpler.</p>
+        <div class="alert3" id="div3"><strong>Hi there!</strong> I am the cloning alert.</div>
+        <ul>
+            <li>The call elem.cloneNode(true) creates a “deep” clone of the element – with all attributes and subelements.</li>
+            <li>If we call elem.cloneNode(false), then the clone is made without child elements.</li>
+        </ul>
+
+        <h3>Document Fragment:</h3>
+        <p>DocumentFragment is a special DOM node that serves as a wrapper to pass around lists of nodes.
+        We can append other nodes to it, but when we insert it somewhere, then its content is inserted instead.</p>
+        <ul id="ul2"></ul>
+        <p>I guess this didn't make much sense to me because we are using list, and its normal to append the li's to the ul. However, this would be good with a div tag, when you need a wrapper.</p>
+        <p>DocumentFragment is rarely used explicitly. Why append to a special kind of node, if we can return an array of nodes instead? Rewritten example:</p>
+        <p>See JS and console for code example.</p>
+        <ul id="ul4"></ul>
+        <h3 style="font-size: 25px;">Summary</h3>
+        <p>Methods to create new nodes:</p>
+        <ul>
+            <li>document.createElement(tag) – creates an element with the given tag,</li>
+            <li>document.createTextNode(value) – creates a text node (rarely used),</li>
+            <li>elem.cloneNode(deep) – clones the element, if deep==true then with all descendants.</li>
+        </ul>
+
+        <p>Insertion and removal:</p>
+        <li>node.append(...nodes or strings) – insert into node, at the end,</li>
+        <li>node.prepend(...nodes or strings) – insert into node, at the beginning,</li>
+        <li>node.before(...nodes or strings) –- insert right before node,</li>
+        <li>node.after(...nodes or strings) –- insert right after node,</li>
+        <li>node.replaceWith(...nodes or strings) –- replace node.</li>
+        <li>node.remove() –- remove the node.</li>
+
+        <p>There are also “old school” methods:</p>
+        <ul>
+            <li>parent.appendChild(node)</li>
+            <li>parent.insertBefore(node, nextSibling)</li>
+            <li>parent.removeChild(node)</li>
+            <li>parent.replaceChild(newElem, node)</li>
+        </ul>
+
+        <p>Given some HTML in html, elem.insertAdjacentHTML(where, html) inserts it depending on the value of where:</p>
+
+        <ul>
+            <li>"beforebegin" – insert html right before elem,</li>
+            <li>"afterbegin" – insert html into elem, at the beginning,</li>
+            <li>"beforeend" – insert html into elem, at the end,</li>
+            <li>"afterend" – insert html right after elem.</li>
+        </ul>
+        <p><a href="task02.html">Chapter Tasks </a></p>
+
+    </main>
+    <footer>
+         <p>&copy; <span id="date1"></span> | Camila Melo | WDD 330 | Last updated: <span id="date2"></span> | <a href="/index.html" class="portal">Portal</a></p>
+    </footer>
+    <script src="../script/date.js" defer></script> 
+    <script src="ex02.js"></script> 
+</body>
+
+</html>
