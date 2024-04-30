@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 02 Tasks</title>
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="shortcut icon" href="../" type="image/x-icon">
+    
+</head>
+<body>
+    <main>
+        <h1>Tasks for the week:</h1>
+        <!-- <h2>createTextNode vs innerHTML vs textContent</h2> -->
+        
+            <div>
+                <p>1. Which of these 3 commands will do exactly the same?</p>
+                <ol type="a">
+                    <li>elem.append(document.createTextNode(text))</li>
+                    <li>elem.innerHTML = text</li>
+                    <li>elem.textContent = text</li>
+                </ol>
+                <div id="elem1"></div>
+                <div id="elem2"></div>
+                <div id="elem3"></div>
+            </div>
+
+            <div>
+                <p>2. Create a function clear(elem) that removes everything from the element:</p>
+                <ol id="elem">
+                    <li>Hello</li>
+                    <li>World</li>
+                </ol>
+            </div>
+            
+            <div>
+                <p>3. In the example below, the call table.remove() removes the table from the document. But if you run it, you can see that the text "aaa" is still visible. Why does that happen?</p>
+                <table id="table">aaa
+                    <tr>
+                        <td>Test</td>
+                    </tr>
+                </table>
+                <p>The HTML in the task is incorrect. That’s the reason of the odd thing.</p>
+            </div>
+            <div>
+                <p>4. Write an interface to create a list from user input.</p>
+                <p>For every list item:</p>
+                <ol>
+                    <li>Ask a user about its content using prompt.</li>
+                    <li>Create the &lt;li&gt; with it and add it to &lt;ul&gt;.</li>
+                    <li>Continue until the user cancels the input (by pressing Esc or via an empty entry).</li>
+                </ol>
+                 <div id="displayItems"></div>
+                <button type="submit" id="btn">Enter Item</button>
+            </div>
+            
+            <div>
+                <p>5. Write a function createTree that creates a nested ul/li list from the nested object:</p>
+                <p>For instance:</p>
+                <code>
+                    <pre>
+                let data = {
+                    "Fish": {
+                    "trout": {},
+                    "salmon": {}
+                    },
+                
+                    "Tree": {
+                    "Huge": {
+                        "sequoia": {},
+                        "oak": {}
+                    },
+                    "Flowering": {
+                        "apple tree": {},
+                        "magnolia": {}
+                    }
+                    }
+                };
+                    </pre>
+                </code>
+                
+            </div>
+            
+            <div id="container"></div>
+
+       
+    </main>
+    <footer>
+         <p>&copy; <span id="date1"></span> | Camila Melo | WDD 330 | Last updated: <span id="date2"></span> | <a href="../index.html" class="portal">Portal</a></p>
+    </footer>
+    <script src="../script/date.js" defer></script> 
+    <script src="task02.js"></script>
+    
+</body>
+</html>
