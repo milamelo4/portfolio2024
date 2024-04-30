@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Week 02 Tasks</title>
     <link rel="stylesheet" href="../style/style.css">
-    <link rel="shortcut icon" href="../" type="image/x-icon">
+    <link rel="shortcut icon" href="../favicon-32x32.png" type="image/x-icon">
     
 </head>
 <body>
     <main>
-        <h1>Tasks for the week:</h1>
+        <h1>Tasks for week 2:</h1>
+        <div id="test"></div>
         <!-- <h2>createTextNode vs innerHTML vs textContent</h2> -->
         
             <div>
@@ -80,8 +81,54 @@
                 </code>
                 
             </div>
-            
             <div id="container"></div>
+            <div>
+                <p>6. Show descendants in a tree. There’s a tree organized as nested ul/li. Write the code that adds to each &lt;li&gt; the number of its descendants. Skip leaves (nodes without children).</p>
+                <p>ps: I have to solve this task a bit different because it uses tagName, which it would count the entire document.</p>
+
+                <ul>
+                    <li class="parentli">Animals
+                        <ul>
+                            <li class="parentli">Mammals
+                                <ul>
+                                    <li>Cows</li>
+                                    <li>Donkeys</li>
+                                    <li>Dogs</li>
+                                    <li>Tigers</li>
+                                </ul>
+                            </li>
+                            <li class="parentli">Other
+                                <ul>
+                                    <li>Snakes</li>
+                                    <li>Birds</li>
+                                    <li>Lizards</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="parentli">Fishes
+                        <ul>
+                            <li class="parentli">Aquarium
+                            <ul>
+                                <li>Guppy</li>
+                                <li>Angelfish</li>
+                            </ul>
+                            </li>
+                            <li class="parentli">Sea
+                            <ul>
+                                <li>Sea trout</li>
+                            </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <p>7. Create a Calender. Write a function createCalendar(elem, year, month). The call should create a calendar for the given year/month and put it inside elem. The calendar should be a table, where a week is &lt;tr&gt;, and a day is &lt;td&gt;. The table top should be &lt;th&gt; with weekday names: the first day should be Monday, and so on till Sunday.</p>
+                <p>For instance, createCalendar(cal, 2012, 9) should generate in element cal the following calendar:</p>
+                <div id="calendar"></div>
+            </div>
 
        
     </main>

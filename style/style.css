@@ -29,7 +29,6 @@ body {
     font-family: var(--body-font);
     inline-size: 60em;
     margin-inline: auto;
-   
     border: 1px solid white;
     max-width: 100%;
 
@@ -37,10 +36,6 @@ body {
 main {
     background-color: var(--sage-color);
     padding: 3%;
-    
-   
- 
-    
 }
 
 p {
@@ -86,6 +81,29 @@ footer a:hover {
     color: #f16f6f;
     background-color: #dff0d8;
 }
+
+table {
+    border-collapse: collapse;
+}
+
+td,
+th {
+    border: 1px solid black;
+    padding: 3px;
+    text-align: center;
+}
+
+th {
+    font-weight: bold;
+    background-color: #E6E6E6;
+    color: black;
+}
+
+
+
+
+
+
 /* Mobile View */
 @media only screen and (max-width: 600px) {
 

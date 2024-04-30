@@ -7,7 +7,7 @@ div.className = 'alert'
 div.innerHTML = `<strong>Hi there!</strong> You've read an important message.`;
 
 
-// Interesting that I didn't have to declared the <ol> or add an element by tag or ID, BUT... know that the ol bellow its not referenced to the tag <ol>, instead that is the id I declared in the HTML file, if I remove the id='ol' the code will give an error that the ol hasn't been defined. The code bellow add the word before, right before the list starts, and the word after right after the list ends. Both jumping one line, as if it was a block element.
+// Interesting that I didn't have to declared the <ol> or add an element by tag or ID, BUT... know that the ol bellow its not referenced to the tag <ol>, instead that is the id I declared in the HTML file, if I remove the id='ol' the code will give an error that the ol hasn't been defined. The code bellow add the word before, right before the list starts, and the word after right after the list ends. Both jumping one line, as if it was a block element. Update: I guess this works because I probably have a bundler that understands to look in HTML file to look up for the id.
 ol.before('before')
 ol.after('after')
 
