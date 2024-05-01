@@ -178,7 +178,88 @@
             <li>url -> the url of the document where the update happened.</li>
             <li>storageArea -> either localStorage or sessionStorage object where the update happened.</li>
         </ul>
-        <h2>Export and Import</h2>
+        <h2>Export</h2>
+        <p>For instance, here all exports are valid:</p>
+        <pre>
+        //export an array
+        export let months = ['Jan', 'Feb', 'Mar','Apr', 'Aug', 'Sep', 'Oct', 'Nov',
+        'Dec'];
+        
+        //export a constant
+        export const MODULES_BECAME_STANDARD_YEAR = 2015;
+        
+        //export a class
+        export class User {
+          constructor(name) {
+            this.name = name;
+           }
+        }
+        </pre>
+        <p>Export apart from declarations:</p>
+        <pre>
+        // 📁 say.js
+        function sayHi(user) {
+           alert(`Hello, ${user}!`);
+        }
+        
+        function sayBye(user) {
+           alert(`Bye, ${user}!`);
+        }
+        
+        export {sayHi, sayBye}; //list of exported variables
+        </pre>
+
+        <h2>Import</h2> 
+        <p>
+            Usually, we put a list of what to import in curly braces import {...}, like
+            this:
+        </p>
+        <pre>
+        // 📁 main.js
+        import {sayHi, sayBye} from './say.js';
+        
+        sayHi('John'); // Hello, John!
+        sayBye('John'); // Bye, John!
+        </pre>
+        <p>Import “as”: We can also use as to import under different names.</p>
+        <pre>
+        import {sayHi as hi, sayBye as bye} from './say.js';
+        
+        hi('John'); // Hello, John!
+        bye('John'); // Bye, John!
+        </pre>
+        <p>Same syntax for export "as".</p>
+        <p>Export default</p>
+        <pre>
+        // 📁 user.js
+        export default class User { // just add "default"
+          constructor(name) {
+            this.name = name;
+          }
+        }
+        </pre>
+        <p>There may be only one export default per file.  
+        …And then import it without curly braces:</p>
+        <pre>
+        // 📁 main.js
+        import User from './user.js'; // not {User}, just User        
+        new User('John');
+        </pre>
+        <p>Don't forget curly braces:</p>
+        <table>
+            <th>Named export</th>
+            <th>Default export</th>
+            <tr>
+                <td>export class User {...}</td>
+                <td>export default class User {...}</td>
+            </tr>
+            <tr>
+                <td>import {User} from ...</td>
+                <td>import User from ...</td>
+            </tr>
+        </table>
+        
+       
 
         <p><a href="task02.html">Chapter Tasks </a></p>
     </main>

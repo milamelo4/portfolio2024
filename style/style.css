@@ -8,7 +8,7 @@
         'Trebuchet MS',
         sans-serif;
     color-scheme: dark;
-    --sage-color: #70866F;
+    --sage-color: #566755;
     --gold-color: #D9A02F;
     --cream-color: #E3DCCC;
     --navy-color: #818C9E;
@@ -86,10 +86,9 @@ table {
     border-collapse: collapse;
 }
 
-td,
-th {
+td{
     border: 1px solid black;
-    padding: 3px;
+    padding: .5%;
     text-align: center;
 }
 
@@ -97,6 +96,10 @@ th {
     font-weight: bold;
     background-color: #E6E6E6;
     color: black;
+    padding: 0.5%;
+    border: 1px solid black;
+    text-align: center;
+    
 }
 
 
