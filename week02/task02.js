@@ -175,9 +175,20 @@ createCalendar(document.getElementById("calendar"), 2012, 9);
 // alert(sessionStorage.getItem("test"));
 
 // triggers on updates made to the same storage from other documents
-window.onstorage = event => { // can also use window.addEventListener('storage', event => {
-  if (event.key != 'now') return;
-  alert(event.key + ':' + event.newValue + " at " + event.url);
-};
+// window.onstorage = event => { // can also use window.addEventListener('storage', event => {
+//   if (event.key != 'now') return;
+//   alert(event.key + ':' + event.newValue + " at " + event.url);
+// };
 
-localStorage.setItem('now', Date.now());
+// localStorage.setItem('now', Date.now());
+
+// Task LocalStorage | sessionStorage Task:
+//There are two ways to create an event:
+
+ area.value = localStorage.getItem("area");
+//  area.oninput = () => {
+//    localStorage.setItem("area", area.value);
+//  };
+area.addEventListener('input', ()=> {
+  localStorage.setItem("area", area.value);
+})

@@ -11,7 +11,7 @@
 <body>
     <main>
         <h1>Tasks for week 2:</h1>
-        <h2>Modifying the Document</h2>
+        <h2>Modifying the Document Tasks:</h2>
         <div id="test"></div>
         <!-- <h2>createTextNode vs innerHTML vs textContent</h2> -->
         
@@ -130,7 +130,15 @@
             <p>For instance, createCalendar(cal, 2012, 9) should generate in element cal the following calendar:</p>
             <div id="calendar"></div>
         </div>
-    
+        <h2>LocalStorage | sessionStorage Task:</h2>
+        
+        <p> Autosave a form field:
+            Create a textarea field that “autosaves” its value on every change.            
+            So, if the user accidentally closes the page, and opens it again, he’ll find his
+            unfinished input at place.
+        </p>
+        <textarea name="area" id="area" cols="30" rows="10"></textarea><br>
+        <button onclick="localStorage.removeItem('area');area.value=''">Clear</button>
        
 
        
