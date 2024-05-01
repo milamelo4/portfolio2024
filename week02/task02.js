@@ -145,8 +145,39 @@ console.log(d.getMonth());
 // Example usage:
 // Create a calendar for September 2012 and insert it into an element with id "calendar"
 createCalendar(document.getElementById("calendar"), 2012, 9);
-        
-        
-       
-       
-        
+
+
+//Local storage test
+// localStorage.setItem("test", 1);   
+// alert(localStorage.getItem("test"));     
+
+// for (let i = 0; i < localStorage.length; i++) {
+//   let key = localStorage.key(i);
+//   alert(`${key}: ${localStorage.getItem(key)}`);
+// }
+// for (let key in localStorage) {
+//   if (!localStorage.hasOwnProperty(key)) {
+//     continue; // skip keys like "setItem", "getItem" etc
+//   }
+//   alert(`${key}: ${localStorage.getItem(key)}`);
+// }
+// localStorage.user = { name: "John" };
+// alert(localStorage.user); // [object Object]
+
+// //localStorage.user = JSON.stringify({ name: "John" }); // user: {"name":"John"}
+// localStorage.user = JSON.stringify({name: "John"});
+
+// // sometime later
+// let user = JSON.parse( localStorage.user );
+// alert( user.name ); // John
+
+// sessionStorage.setItem("test", 1);
+// alert(sessionStorage.getItem("test"));
+
+// triggers on updates made to the same storage from other documents
+window.onstorage = event => { // can also use window.addEventListener('storage', event => {
+  if (event.key != 'now') return;
+  alert(event.key + ':' + event.newValue + " at " + event.url);
+};
+
+localStorage.setItem('now', Date.now());

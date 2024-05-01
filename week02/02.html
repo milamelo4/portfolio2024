@@ -57,7 +57,7 @@
             <li>"afterend" -> insert html immediately after elem.</li>
         </ul>
         <aside id="aside"></aside>
-        <p>So here’s an alternative variant of showing a message:</p>
+        <p>So here's an alternative variant of showing a message:</p>
 
         <code>
             document.body.insertAdjacentHTML("afterbegin", `&lt;div class="alert"&gt;
@@ -75,7 +75,7 @@
         <p>Sometimes when we have a big element, that may be faster and simpler.</p>
         <div class="alert3" id="div3"><strong>Hi there!</strong> I am the cloning alert.</div>
         <ul>
-            <li>The call elem.cloneNode(true) creates a “deep” clone of the element – with all attributes and subelements.</li>
+            <li>The call elem.cloneNode(true) creates a “deep” clone of the element -> with all attributes and subelements.</li>
             <li>If we call elem.cloneNode(false), then the clone is made without child elements.</li>
         </ul>
 
@@ -90,18 +90,18 @@
         <h3 style="font-size: 25px;">Summary</h3>
         <p>Methods to create new nodes:</p>
         <ul>
-            <li>document.createElement(tag) – creates an element with the given tag,</li>
-            <li>document.createTextNode(value) – creates a text node (rarely used),</li>
-            <li>elem.cloneNode(deep) – clones the element, if deep==true then with all descendants.</li>
+            <li>document.createElement(tag) -> creates an element with the given tag,</li>
+            <li>document.createTextNode(value) -> creates a text node (rarely used),</li>
+            <li>elem.cloneNode(deep) -> clones the element, if deep==true then with all descendants.</li>
         </ul>
 
         <p>Insertion and removal:</p>
-        <li>node.append(...nodes or strings) – insert into node, at the end,</li>
-        <li>node.prepend(...nodes or strings) – insert into node, at the beginning,</li>
-        <li>node.before(...nodes or strings) –- insert right before node,</li>
-        <li>node.after(...nodes or strings) –- insert right after node,</li>
-        <li>node.replaceWith(...nodes or strings) –- replace node.</li>
-        <li>node.remove() –- remove the node.</li>
+        <li>node.append(...nodes or strings) -> insert into node, at the end,</li>
+        <li>node.prepend(...nodes or strings) -> insert into node, at the beginning,</li>
+        <li>node.before(...nodes or strings) ->- insert right before node,</li>
+        <li>node.after(...nodes or strings) ->- insert right after node,</li>
+        <li>node.replaceWith(...nodes or strings) ->- replace node.</li>
+        <li>node.remove() ->- remove the node.</li>
 
         <p>There are also “old school” methods:</p>
         <ul>
@@ -114,13 +114,72 @@
         <p>Given some HTML in html, elem.insertAdjacentHTML(where, html) inserts it depending on the value of where:</p>
 
         <ul>
-            <li>"beforebegin" – insert html right before elem,</li>
-            <li>"afterbegin" – insert html into elem, at the beginning,</li>
-            <li>"beforeend" – insert html into elem, at the end,</li>
-            <li>"afterend" – insert html right after elem.</li>
+            <li>"beforebegin" -> insert html right before elem,</li>
+            <li>"afterbegin" -> insert html into elem, at the beginning,</li>
+            <li>"beforeend" -> insert html into elem, at the end,</li>
+            <li>"afterend" -> insert html right after elem.</li>
         </ul>
-        <p><a href="task02.html">Chapter Tasks </a></p>
+        
+        <h2>LocalStorage | sessionStorage</h2>
+        <ul>
+            <li>Web storage objects localStorage and sessionStorage allow to save key/value pairs in the browser.
+            The data survives a page refresh (for sessionStorage) and even a full browser restart (for localStorage).</li>
+            <li>Unlike cookies, web storage objects are not sent to server with each request. Because of that, we can store much more.</li>
+            <li>The storage is bound to the origin (domain/protocol/port triplet). </li>
+        </ul>
+        <p>Both storage objects provide the same methods and properties:</p>
 
+        <ul>
+            <li>setItem(key, value) -> store key/value pair.</li>
+            <li>getItem(key) -> get the value by key.</li>
+            <li>removeItem(key) -> remove the key with its value.</li>
+            <li>clear() -> delete everything.</li>
+            <li>key(index) -> get the key on a given position.</li>
+            <li>length -> the number of stored items.</li>
+        </ul>
+        <p><strong>LocalStorage</strong></p> 
+        <p>Looping over keys:</p>
+        <p>Unfortunately, storage objects are not iterable
+        just get the “own” keys with Object.keys and then loop over them if needed:</p>
+
+        <pre>
+        let keys = Object.keys(localStorage);
+        for(let key of keys) {
+        alert(`${key}: ${localStorage.getItem(key)}`);
+        }
+        </pre>
+        <p>Strings only: (I always have forget this). Please note that both key and value must be strings, if not it will get converted automatically.</p>
+        <ol>
+            <li>localStorage.user = {name: "John"};</li>
+            <li>alert(localStorage.user); // [object Object]</li>
+        </ol>
+        <p>JSON to store objects though:</p>
+        <ol>
+            <li>localStorage.user = JSON.stringify({name: "John"});</li>
+            <li>let user = JSON.parse( localStorage.user );</li>
+            <li>alert( user.name ); // John</li>
+        </ol>
+        <p><strong>sessionStorage</strong></p> 
+        <p>The sessionStorage object is used much less often than localStorage. Properties and methods are the same, but it's much more limited:</p>
+
+        <ul>
+            <li>The sessionStorage exists only within the current browser tab.</li>
+            <li>Another tab with the same page will have a different storage.</li>
+            <li>But it is shared between iframes in the same tab (assuming they come from the same origin).</li>
+            <li>The data survives page refresh, but not closing/opening the tab.</li>
+        </ul>
+        <p><strong>Storage event:</strong></p>
+        <p>When the data gets updated in localStorage or sessionStorage, storage event triggers, with properties:</p>
+
+        <ul>
+            <li>key -> the key that was changed (null if .clear() is called).</li>
+            <li>oldValue -> the old value (null if the key is newly added).</li>
+            <li>newValue -> the new value (null if the key is removed).</li>
+            <li>url -> the url of the document where the update happened.</li>
+            <li>storageArea -> either localStorage or sessionStorage object where the update happened.</li>
+        </ul>
+
+        <p><a href="task02.html">Chapter Tasks </a></p>
     </main>
     <footer>
          <p>&copy; <span id="date1"></span> | Camila Melo | WDD 330 | Last updated: <span id="date2"></span> | <a href="../index.html" class="portal">Portal</a></p>
