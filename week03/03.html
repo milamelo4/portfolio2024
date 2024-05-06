@@ -5,15 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <meta name="description" content="Notes Week 03">
     <title>Week 03</title>
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="../style/style.css">
     <link rel="shortcut icon" href="../favicon-32x32.png" type="image/x-icon">
 </head>
 <body>
     <main>
+        <h1>Week 03 Reading Notes</h1>
+        <h2>10 MOBILE UX DESIGN PRINCIPLES YOU SHOULD KNOW</h2>
+        <ol>
+            <li><strong>Content Prioritization:</strong> Less is more</li>
+            <li><strong>Make Navigation Intuitive:</strong> Simplify the process</li>
+            <li><strong>Touchscreen Target Sizes:</strong>
+                <dt>Element size: 44px wide 44px tall</dt>
+            </li>
+            <li><strong>Provide User Control</strong></li>
+            <li><strong>Legible Text Content:</strong>
+                <dt>Typography: No smaller than 16px</dt>
+                <dt>Characters: 30-40ch per line.</dt>
+            </li>
+            <li><strong>Make Interface Elements Clearly Visible:</strong> sufficient contrast</li>
+            <li>Hand Position Controls:
+            <img src="https://cdn-gldgp.nitrocdn.com/vUIvsOqHeLQajhfRZniFXoELdEeKGerS/assets/images/optimized/rev-7bd246b/wp-content/uploads/2016/12/06-1280x960.png" alt="hand position control" class="hand-img" title="https://uxbert.com/10-mobile-ux-design-principles/#.Y3QWti-B1qs"></img></li>
+            <li><strong>Minimize Data Input:</strong> Minimizing the need to enter data</li>
+            <li><strong>Create a Seamless Experience: </strong>Seamless experience, across all devices.</li>
+            <li><strong>Test Your Design</strong></li>
+        </ol>
+        <h2>APIs</h2>
+        <p>Application Programming Interface</p>
+        <p>APIs in client-side JavaScript: They generally fall into two categories:</p>
+        <ol>
+            <li><strong>Browser APIs:</strong> are built into your web browser and are able to expose data from
+            the browser and surrounding computer environment</li>
+            <li><strong>Third-party APIs: </strong> are not built into the browser by default, and you generally have to retrieve their code.</li>
+        </ol>
+        <p>There are a huge number of APIs available in modern browsers that allow you to
+        do a wide variety of things in your code. You can see this by taking a look at
+        the <a href="https://developer.mozilla.org/en-US/docs/Web/API">MDN APIs index page</a>.</p>
+        <h2>Common third-party APIs:</h2>
+        <ul>
+            <li><a href="https://developer.mapquest.com/">Mapquest</a></li>
+            <li><a href="https://developers.facebook.com/docs/">Facebook suite of APIs</a></li>
+            <li><a href="https://developers.google.com/youtube/">YouTube API</a></li>
+            <li><a href="https://developers.pinterest.com/">Pinterest API</a></li>
+        </ul>
+        <p>APIs are based on JS objects, which are containers for the data the API uses.</p>
+        <h2>setTimeout and setInterval</h2>
+        <h3>setTimeout</h3>
+        <p>allows us to run a function once after the interval of time. <br>
+        Syntax: 
+    <pre>let timerId = setTimeout(func|code, [delay], [arg1], [arg2], ...)</pre>
+    The delay before run, in milliseconds (1000 ms = 1 second), by default 0.</p>
+        <p>Arguments for the function
+        For instance, this code calls sayHi() after one second:</p>
+    <pre>function sayHi() {
+        alert('Hello');
+        }
+        
+        setTimeout(sayHi, 1000);</pre>
+        <p>With Arguments:</p>
+    <pre>function sayHi(phrase, who) {
+    alert( phrase + ', ' + who );
+    }
+    
+    setTimeout(sayHi, 1000, "Hello", "John"); // Hello, John</pre>    
+        <p>Canceling with clearTimeout:</p>
+    <pre>let timerId = setTimeout(...);
+    clearTimeout(timerId);</pre>
+        <p>
+            <strong>setInterval</strong> allows us to run a function repeatedly, starting after the interval
+            of time, then repeating continuously at that interval. Infinite loop unless you clear it.
+        </p>
+        <script src="task03.js"></script>
 
     </main>
      <footer>
-         <p>&copy; <span id="date1"></span> | Camila Melo | WDD 330 | Last updated: <span id="date2"></span> | <a href="../index.html" class="portal">Portal</a></p>
+         <p>&copy; <span id="date1"></span> | Camila Melo | WDD 330 | Last updated: <span id="date2"></span> | <a href="../index.html" class="portal">Portal </a>
+        <a href="https://uxbert.com/10-mobile-ux-design-principles/#.Y3QWti-B1qs">| UX Design</a> | <a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Introduction">Introduction to APIs</a></p>
     </footer>
     <script src="../script/date.js" defer></script> 
     
