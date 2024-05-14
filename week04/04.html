@@ -5,17 +5,102 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <meta name="description" content="Notes Week 04">
     <title>Week 04</title>
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="../style/style.css">
     <link rel="shortcut icon" href="../favicon-32x32.png" type="image/x-icon">
 </head>
 <body>
     <main>
+        <h1>Week 04 Reading Notes</h1>
+        <h2>Debugging in the browser</h2>
+        <p>I think this is my favorite topic. A while ago I figure it out that the way I understand the abstract of programming was debugging. I'm a visual learner and I need to see it happening. That being said lets jump right in.</p>
+        <p>The command debugger can be use to pause the code to be analyzed, however, it only works if Dev tools are open.</p>
+        <h3>Tracing the execution: </h3>
+        <ul>
+            <li>"Resume": continue the execution.</li>
+            <li>“Step”: run the next command.</li>
+            <li>“Step over”: run the next command, but don't go into a function.</li>
+            <li>“Step into”: Similar to Step, but behaves differently in case of asynchronous function calls.</li>
+            <li>“Step out”: continue the execution till the end of the current function</li>
+            <li>enable/disable all breakpoints.</li>
+        </ul>
+      
+            <fieldset><legend style="color: rgb(105, 15, 15); font-weight: 600;">IMPORTANT</legend>
+                <p>“Step” command ignores async actions, such as setTimeout (scheduled function
+                call), that execute later. The “Step into” goes into their code, waiting for
+                them if necessary.</p>
+            </fieldset>
+            <h2>Codding Style</h2>
+            <p>I'm all about using a clean an easy code and I really enjoyed al the suggested rules...until I saw A semicolon; is mandatory. It might look more organized but I know is not mandatory. Interestingly enough, because I'm dyslexic the less symbols the better, therefore I don't use them. However, style lint can help with that.</p>
+            <p>Cheat sheet suggestions:</p>
+            <ol>
+                <li>No space between the function name and parentheses between the parentheses and
+                the parameter.</li>
+                <li>A space between parameters</li>
+                <li>Curly brace { on the same line, after a space</li>
+                <li>Spaces around operators</li>
+                <li>A space between arguments</li>
+                <li>Lines are not very long</li>
+                <li>else { without a line break</li>
+                <li>Spaces around a nested call: { import }</li>
+                <li>An empty line between logical block</li>
+                <li>Indentation 2 spaces</li>
+                <li>A space after for/if/while</li>
+            </ol>
 
+            <h3>Line Length:</h3>
+            <p>It's best practice to split them. Backticks ` allows you to split the string into multiple lines. The maximum line length its usually 80-120 ch.</p>
+            <p>I really liked how they have this if statement:
+            <pre>
+            if (
+              id === 123 &&
+              moonPhase === 'Waning Gibbous' &&
+              zodiacSign === 'Libra'
+            ) {
+            letTheSorceryBegin();
+            }
+        </pre>
+            </p>
+            <p>Vertical indents: empty lines for splitting code into logical blocks. Insert an extra newline where it helps to make the code more readable. There should not be more than nine lines of code without a vertical indentation.</p>
+            <h2>Task: </h2>
+            <p>I tried to complete this task but I have extension that auto fixed all the issues.</p>
+        <h2>Error handling, "try...catch"</h2>   
+        <p>I've learned how to use try and catch before, but I definitely need some revision.</p> 
+        <ol>
+            <li>First, the code in try {...} is executed.</li>
+            <li>f there were no errors, then catch (err) is ignored: the execution reaches the
+            end of try and goes on, skipping catch.</li>
+            <li>If an error occurs, then the try execution is stopped, and control flows to the
+            beginning of catch (err). The err variable (we can use any name for it) will
+            contain an error object with details about what happened.</li>
+        </ol>
+        <p>Steps of execution:</p>
+        <ul>
+            <li>Begin</li>
+            <dd>Try {code}</dd>
+            <li>No Errors</li>
+               <dd>  -> catch block ignored</dd>
+            <li>Error occurred</li>
+            <dd>-> Ignore the rest of try</dd>
+            <dd>-> execute catch block</dd>
+        </ul>
+        <p>In some ways, a try and catch block in JavaScript can be similar to an if
+        statement with a conditional check. I think the main difference is that after the catch block handles the error, the program continues executing the code after the try-catch block.</p>
+        <p>In our case, try...catch is placed to catch “incorrect data” errors. But by its
+        nature, catch gets all errors from try.</p>
+
+
+
+            
+
+        
+
+    
     </main>
      <footer>
          <p>&copy; <span id="date1"></span> | Camila Melo | WDD 330 | Last updated: <span id="date2"></span> | <a href="../index.html" class="portal">Portal</a></p>
     </footer>
     <script src="../script/date.js" defer></script>
+    
     
 </body>
 
