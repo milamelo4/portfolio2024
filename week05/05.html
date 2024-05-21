@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 05</title>
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="shortcut icon" href="../favicon-32x32.png" type="image/x-icon">
+    <script>
+      
+    </script>
+</head>
+<body>
+    <main>
+        <h1>Week 05 Reading Notes</h1>
+        <h2>Fetch</h2>
+        <p>
+            I'm a bit familiar with Fetch method, as I used before.
+            I do prefer this syntax:
+        <pre>
+        let response = await fetch(url);
+        
+        if (response.ok) { // if HTTP-status is 200-299
+        // get the response body (the method explained below)
+        let json = await response.json();
+        } else {
+        alert("HTTP-Error: " + response.status);
+        }
+
+        </pre>
+        </p>
+        <p>
+            <H3>Additional method call</H3>
+            
+            <p>
+                Response provides multiple promise-based methods to access the body in various
+                formats:
+            </p>
+            
+            <ul>
+                <li>response.text() -> read the response and return as text,</li>
+                <li>response.json() -> parse the response as JSON,</li>
+                <li>
+                    response.formData() -> return the response as FormData object (explained in the
+                    next chapter),
+                </li>
+                <li>response.blob() -> return the response as Blob (binary data with type),</li>
+                <li>
+                    response.arrayBuffer() -> return the response as ArrayBuffer (low-level
+                    representation of binary data),
+                </li>
+                <li>
+                    additionally, response.body is a ReadableStream object, it allows you to read
+                    the body chunk-by-chunk, we'll see an example later.
+                </li>
+            </ul>
+        </p>
+        <h3>Request headers syntax:</h3>
+        <pre>
+        let response = fetch(protectedUrl, {
+           headers: {
+            Authentication: 'secret'
+           }
+        });
+        </pre>
+        <h2>Fetch: Cross-Origin Requests</h2>
+        <p>I have almost broke my computer trying to fix this issue in the past, but I understand that its a protection necessary.</p>
+        
+
+    </main>
+    <footer>
+        <p>&copy; <span id="date1"></span> | Camila Melo | WDD 330 | Last updated:
+            <span id="date2"></span> | <a href="../index.html"
+                class="portal">Portal</a></p>
+    </footer>
+    <script src="../script/date.js" defer></script>
+    <script src="./task05.js"></script>
+    
+</body>
+
+
+</html>
