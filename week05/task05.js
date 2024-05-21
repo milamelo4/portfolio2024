@@ -24,14 +24,14 @@ async function getUsers(names) {
 
 //Fetch: Cross-Origin Requests
 // 1. Declare the function to process the weather data
-function gotWeather({ temperature, humidity }) {
-  console.log(`temperature: ${temperature}, humidity: ${humidity}`);
-}
-let script = document.createElement("script");
-script.src = `http://another.com/weather.json?callback=gotWeather`;
-document.body.append(script);
-// The expected answer from the server looks like this:
-gotWeather({
-  temperature: 25,
-  humidity: 78
-});
+// function gotWeather({ temperature, humidity }) {
+//   console.log(`temperature: ${temperature}, humidity: ${humidity}`);
+// }
+// let script = document.createElement("script");
+// script.src = `http://another.com/weather.json?callback=gotWeather`;
+// document.body.append(script);
+// // The expected answer from the server looks like this:
+// gotWeather({
+//   temperature: 25,
+//   humidity: 78
+// });
