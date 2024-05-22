@@ -64,14 +64,149 @@
         });
         </pre>
         <h2>Fetch: Cross-Origin Requests</h2>
-        <p>I have almost broke my computer trying to fix this issue in the past, but I understand that its a protection necessary.</p>
+        <p>I have almost broke my computer trying to fix this issue in the past, but I understand that its a protection necessary. The browser ensures that the correct Origin is sent with a cross-origin request.
+        It checks for permitting Access-Control-Allow-Origin in the response, if it
+        exists, then JavaScript is allowed to access the response, otherwise it fails
+        with an error.</p>
+        <p>(Don't forget): fetch is used to make HTTP requests.</p>
+        <h2>Rest parameters and spread syntax</h2>
+        <p>...args(multiple parameters). </p>
+        <pre>
+        function sumAll(...args) { // args is the name for the array
+          let sum = 0;
         
+          for (let arg of args) sum += arg;
+        
+          return sum;
+        }
+        
+        alert( sumAll(1) ); // 1
+        alert( sumAll(1, 2) ); // 3
+        alert( sumAll(1, 2, 3) );
+        </pre>
+        <p>Here the first two arguments go into variables and the rest go into titles
+        array: (The rest MUST be at the end.)</p>
+        <pre>
+        function showName(firstName, lastName, ...titles) {
+          alert( firstName + ' ' + lastName ); // Julius Caesar
+        
+          // the rest go into titles array
+          // i.e. titles = ["Consul", "Imperator"]
+          alert( titles[0] ); // Consul
+          alert( titles[1] ); // Imperator
+          alert( titles.length ); // 2
+        }
+        
+        showName("Julius", "Caesar", "Consul", "Imperator");
+        </pre>
+        <p>The arguments key word:</p>
+        <pre>
+        function showName() {
+          alert( arguments.length );
+          alert( arguments[0] );
+          alert( arguments[1] );
+        
+          // it's iterable
+          // for(let arg of arguments) alert(arg);
+        }
+        
+        // shows: 2, Julius, Caesar
+        showName("Julius", "Caesar");
+        
+        // shows: 1, Ilya, undefined (no second argument)
+        showName("Ilya");
+        </pre>
+        <p>Math.max():</p>
+        <pre>
+        let a = [3,5,1]
+        
+        console.log(Math.max(...a)) // 5
+        </pre>
+        <p>Multiple iterables:</p>
+        <pre>
+        let arr1 = [1, -2, 3, 4];
+        let arr2 = [8, 3, -8, 1];
+        
+        alert( Math.max(...arr1, ...arr2) ); // 8
+        </pre>
+        <p>This method is awesome, merge arrays:</p>
+        <pre>
+        let arr = [3, 5, 1];
+        let arr2 = [8, 9, 15];
+        
+        let merged = [0, ...arr, 2, ...arr2];
+        
+        alert(merged); // 0,3,5,1,2,8,9,15 (0, then arr, then 2, then arr2)
+        </pre>
+        <h2>Single-Page Applications</h2>
+        <p>A single-page application (SPA) is a website that re-renders its content in
+        response to navigation actions (e.g. clicking a link) without making a request
+        to the server to fetch new HTML.</p>
+        <p>Location Primer:</p>
+        <img src="https://blog.pshrmn.com/static/img/how-single-page-applications-work/url-parts.png" alt="URL parts" width="50%">
+        <p>Only three of the location object's properties are important for an SPA:
+        <strong>pathname, hash, and search</strong> (commonly called a query string).</p>
+        <p>The pathname is used for determining what content to render.</p>
+        <p>The search and hash are more useful for providing additional data.</p>
+        <p>Example:
+            URL /images?of=mountains
+        </p>
+        <p>the <strong>/images</strong> -> pathname would specify that an images page
+        should be rendered.</p>
+        <p><strong>?of=mountains</strong> -> search specifies the type of images
+        that should be rendered within the images page.</p>
+        <h3>pushState() and replaceState()</h3>
+        <p>Both have the same syntax, 3 arguments:</p>
+        <ol>
+            <li>The first argument is state. If you do not want to pass any state, pass null.</li> 
+            <li>The second is a title string, but no browsers actually use this yet.</li>
+            <li>
+                The third argument is the path that you want to navigate to. This can be a full
+                URL, an absolute path, or a relative path, but it must be within the same
+                application (same protocol and hostname). If it is not, a DOMException error
+                will be thrown.
+            </li>
+        </ol>
+        <p>Example:</p>
+        <pre>
+        history.pushState(null, '', '/next-location');
+        history.replaceState(null, '', '/replace-location');
+        // attaching state to an entry
+        history.pushState({ msg: 'Hi!' }, '', '/greeting');
+        // while on medium.com
+        history.pushState(null, '', 'https://www.google.com');
+        // throws a DOMException
+        </pre>
+        <p>Advantages of SPAs:</p>
+        <ol>
+            <li>
+                Faster User Experience: SPAs load faster after the initial page load because
+                they only need to fetch data, not entire HTML pages, from the server.
+            </li>
+            <li>Since SPAs only load the necessary data, they can provide a more responsive and
+            interactive user interface.</li>
+            <li>Reduced Server Load</li>
+
+        </ol>
+        <p>Disadvantages of SPAs:</p>
+        <ol>
+            <li>
+                search engine crawlers have difficulty indexing content in SPAs because much of
+                the content is loaded dynamically via JavaScript.
+            </li>
+            <li>SPAs often require loading a large JavaScript bundle upfront.</li>
+            <li>Reduced Server Load, particularly for first-time visitors.</li>
+            <li>Browser Compatibility</li>
+            <li>Security Concerns.</li>
+        
+        </ol>
+
 
     </main>
     <footer>
         <p>&copy; <span id="date1"></span> | Camila Melo | WDD 330 | Last updated:
             <span id="date2"></span> | <a href="../index.html"
-                class="portal">Portal</a></p>
+                class="portal">Portal</a> | <a href="https://blog.pshrmn.com/how-single-page-applications-work/">Single-Page Applications</a></p>
     </footer>
     <script src="../script/date.js" defer></script>
     <script src="./task05.js"></script>
