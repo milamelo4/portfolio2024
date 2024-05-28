@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 06</title>
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="shortcut icon" href="../favicon-32x32.png" type="image/x-icon">
+    <script>
+
+    </script>
+</head>
+
+<body>
+    <main>
+        <h1>Week 06 Reading Notes</h1>
+        <h2>Form properties and methods</h2>
+        <p>Document forms are members of the special collection document.forms. <br>
+        We can use both the name or the number in the document to get the form:
+        
+        <pre>
+        document.forms.my; // the form with name="my"
+        document.forms[0]; // the first form in the document
+        </pre>
+        </p>
+        <!-- <form name="my">
+            <input name="one" value="1">
+            <input name="two" value="2">
+        </form> -->
+        <pre>
+        // get the form
+        let form = document.forms.my; // &lt;form name="my"&gt; element
+    
+        // get the element
+        let elem = form.elements.one; // &lt;input name="one"&gt; element
+    
+        alert(elem.value); // 1
+        </pre>
+        <p>
+            There may be multiple elements with the same name. This is typical with radio
+            buttons and checkboxes. <br>            
+            In that case, <strong>form.elements[name]</strong> is a collection. For instance:
+        </p>
+        <!-- <form>
+            <input type="radio" name="age" value="10"> &lt;18
+            <input type="radio" name="age" value="20">18 and up
+        </form> -->
+        <pre>
+          
+        let form = document.forms[0];
+        
+        let ageElems = form.elements.age;
+        
+        alert(ageElems[0]); // [object HTMLInputElement]
+        </pre>
+        <p>This is new to me, I thought that in order to access a form property I needed either a queryselector. All control elements are available in <strong style="color: blanchedalmond;">form.elements</strong>.</p>
+<!-- 
+        <form id="form">
+            <fieldset name="userFields">
+                <legend>info</legend>
+                Login: <input name="login" type="text">
+            </fieldset>
+        </form> -->
+        <pre>
+        console.log(form.elements.login); // &lt;input name="login"&gt;
+
+        let fieldset = form.elements.userFields;
+        console.log(fieldset); // HTMLFieldSetElement
+
+        // we can get the input by name both from the form and from the fieldset
+        console.log(fieldset.elements.login == form.elements.login); // true
+        </pre>
+        <!-- <form id="forms">
+            <input type="text" name="login">
+        </form> -->
+        
+        <pre>
+        // form -> element
+        let login = forms.login;
+
+        // element -> form
+        console.log(login.form); // HTMLFormElement
+        </pre>
+        <h3>input and textarea:</h3>
+        <p>We can access their value as input.value (string) or input.checked (boolean) for
+        checkboxes and radio buttons.</p>
+        <pre>
+        input.value = "New value";
+        textarea.value = "New text";
+        
+        input.checked = true; // for a checkbox or radio button
+        </pre>
+            <h3>select and option</h3>
+        <p>A &lt;select&gt; element has 3 important properties:</p>
+            <ul>
+                <li>select.options -> the collection of &lt;option&gt; subelements,</li>
+                <li>select.value -> the value of the currently selected &lt;option&gt;,</li>
+                <li>select.selectedIndex -> the number of the currently selected &lt;option&gt;.</li>
+            </ul>
+        <!-- <select id="select">
+            <option value="apple">Apple</option>
+            <option value="pear">Pear</option>
+            <option value="banana">Banana</option>
+        </select> -->
+        
+        <pre>
+        // all three lines do the same thing
+        select.options[2].selected = true;
+        select.selectedIndex = 2;
+        select.value = 'Banana';
+        // please note: options start from zero, so index 2 means the 3rd option.
+        </pre>    
+        <p>Please note that <strong>.select</strong> sets an element to be the display default, it doesn't not mean that it will confirm wether or not the user selected that element.</p>
+        <!-- <select id="select" multiple>
+            <option value="blues" selected>Blues</option>
+            <option value="rock" selected>Rock</option>
+            <option value="classic">Classic</option>
+        </select> -->
+        
+        <pre>
+        // get all selected values from multi-select
+        let selected = Array.from(select.options)
+            .filter(option => option.selected)
+            .map(option => option.value);
+
+        console.log(selected); // blues,rock
+        </pre>
+        <h3>new Option</h3>
+        <p>        
+            In the specification there's a nice short syntax to create an &lt;option&gt; element:
+        </p>
+        
+        <pre>
+        option = new Option(text, value, defaultSelected, selected);</pre>
+        <p>New “unselected” option:</p>
+        let option = new Option("Text", "value");
+        // creates &lt;option value="value"&gt;Text&lt;/option&gt;
+        <p>Selected option:</p>
+        <pre>
+        let option = new Option("Text", "value", true, true);
+        </pre>
+        <p>Option elements have properties:</p>
+        
+        <ol type="a">
+            <li>option.selected -> Is the option selected.</li>
+            <li>option.index -> The number of the option among the others in its &lt;select&gt;.</li>
+            <li>option.text -> Text content of the option (seen by the visitor).</li>
+        </ol>
+        <h2>Task</h2>
+        <select id="genres">
+            <option value="rock">Rock</option>
+            <option value="blues" selected>Blues</option>
+        </select>
+        <h2>Forms: event and method submit</h2>
+        <p>The Example bellow is super cool, It creates a form and it submits automatically.</p>
+        <pre>
+        let form = document.createElement('form');
+        form.action = 'https://google.com/search';
+        form.method = 'GET';
+        
+        form.innerHTML = '&lt;input name="q" value="test"&gt;';
+        
+        // the form must be in the document to submit it
+        document.body.append(form);
+        
+        form.submit();
+        </pre>
+
+        <h3>Task:</h3>
+        <input type="button" value="Click to show the form" id="show-button">
+        <div id="prompt-form-container">
+            <form id="prompt-form">
+                <div id="prompt-message"></div>
+                <input name="text" type="text">
+                <input type="submit" value="Ok">
+                <input type="button" name="cancel" value="Cancel">
+            </form>
+        </div>
+        <h2>Using FormData Objects:</h2>
+        <p>Input mist have a name attribute, but to work inside the data object we need the name attribute, typically same name as the id.</p>
+        <p>The constructor is:</p>
+        <pre>
+        let formData = new FormData([form]);
+        </pre>
+        <p>The special thing about FormData is that network methods, such as fetch, can
+        accept a FormData object as a body.</p>
+        <p>Using FormData with API:</p>
+        <pre>
+        formElem.onsubmit = async (e) => {
+        e.preventDefault();
+        
+        let response = await fetch('/article/formdata/post/user', {
+        method: 'POST',
+        body: new FormData(formElem)
+        });
+        
+        let result = await response.json();
+        
+        alert(result.message);
+        };
+        </pre>
+        <h3>FormData Methods</h3>
+        <p>We can modify fields in FormData with methods:</p>
+
+        <ul>
+            <li>formData.append(name, value) -> add a form field with the given name and value</li>
+            <li>
+                formData.append(name, blob, fileName) -> add a field as if it were &lt;input
+                    type="file"&gt;, the third argument fileName sets file name (not form field
+                name), as it were a name of the file in user's filesystem,
+            </li>
+            <li>formData.delete(name) -> remove the field with the given name,</li>
+            <li>formData.get(name) -> get the value of the field with the given name,</li>
+            <li>
+                formData.has(name) -> if there exists a field with the given name, returns true,
+                otherwise false
+            </li>
+        </ul>
+        <p>Also we can iterate over formData fields using for..of loop:</p>
+        <pre>
+        let formData = new FormData();
+        formData.append('key1', 'value1');
+        formData.append('key2', 'value2');
+        
+        // List key/value pairs
+        for(let [name, value] of formData) {
+        alert(`${name} = ${value}`); // key1 = value1, then key2 = value2
+        }
+        </pre>
+        <p>Another example from the video presentation:</p>
+        <pre>
+        let myForm =document.getElementById('myForm') 
+        let fd = new FormData(myForm) 
+        fd.append('name-attribute', 'value') // Form contents
+        
+        //Iterate through each:
+        for (let key of fd.keys()) {
+            console.log(key, fd.get(key)) 
+            // Form element with key as the name attribute and fd.get(key) as the value
+        }
+        </pre>
+        <p>Lets say I needed to convert the data to an Object:</p>
+        <pre>
+         function convertFdToJson(formData) {
+            let obj = {}
+            for (let key of formData.keys()) {
+                obj[key] = formData.get(key)
+            }
+            return obj   OR  
+            return JSON.stringify(obj) // convert to a string when using JSON data
+         }   
+        </pre>
+        <h2>Client-side form validation</h2>
+        <aside>The examples in this section are being done in codePen. <a href="https://codepen.io/milamelo4/pen/oNRYwxN">CodePen</a></aside>
+        <p>When you enter data, the browser and/or the web
+        server will check to see that the data is in the correct format and within the
+        constraints set by the application. Validation done in the <strong>
+            browser is called
+            client-side validation
+        </strong>, while validation done on <strong>
+            the server is called
+            server-side
+        </strong> validation.</p>
+        <p>I'm familiar with built-in form validation.</p>
+        <p>Validating against a regular expression ( I used before! Hard ):</p>
+
+        <ul>
+            <li>a — Matches one character that is a (not b, not aa, and so on).</li>
+            <li>abc — Matches a, followed by b, followed by c.</li>
+            <li>ab?c — Matches a, optionally followed by a single b, followed by c. (ac or abc)</li>
+            <li>
+                ab*c — Matches a, optionally followed by any number of bs, followed by c. (ac,
+                abc, abbbbbc, and so on).
+            </li>
+            <li>a|b — Matches one character that is a or b.</li>
+            <li>
+                abc|xyz — Matches exactly abc or exactly xyz (but not abcxyz or a or y, and so
+                on).
+            </li>
+        </ul>
+        <h2>Validating forms using JavaScript</h2>
+        <p>Customizing these error messages is one of the most common use cases of the
+        Constraint Validation API. Let's work through a simple example of how to do
+        this.</p>
+        <p>Turn off the browsers automatic validation, this lets the script take control over validation message:</p>
+        <p>&lt;span class="error" <strong>aria-live</strong>="polite"&gt;&lt;/span&gt;</p>
+        <a href="https://codepen.io/milamelo4/pen/ZENByLq">CodePen</a>
+
+    </main>
+    <footer>
+        <p>&copy; <span id="date1"></span> | Camila Melo | WDD 330 | Last
+            updated:
+            <span id="date2"></span> | <a href="../index.html"
+                class="portal">Portal</a> | <a href="https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation">Client-side form validation</a>
+        </p>
+    </footer>
+    <script src="../script/date.js" defer></script>
+    <script src="./task06.js"></script>
+
+</body>
+
+
+</html>
