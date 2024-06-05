@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 07</title>
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="shortcut icon" href="../favicon-32x32.png" type="image/x-icon">
+    
+</head>
+<body>
+    <main>
+        <h1>Week 07 Reading Notes</h1>
+        <h2>Object methods, "this"</h2>
+        <pre>
+         let user = {
+            name: "John",
+            age: 40
+         }   
+        </pre>
+        <p>A function that is a property of an object is called its method.
+        So, here we've got a method sayHi of the object user.
+        Of course, we could use a pre-declared function as a method, like this:</p>
+        <pre>
+        let user = {
+            // ...
+        };
+        
+        // first, declare
+        function sayHi() {
+            alert("Hello!");
+        }
+        
+        // then add as a method
+        user.sayHi = sayHi;
+        user.sayHi(); // Hello!
+
+        // method shorthand looks better, right?
+        user = {
+            sayHi() { // same as "sayHi: function(){...}"
+            alert("Hello");
+            }
+        };
+        </pre>
+        <h3>“this” in methods</h3>
+        <p>Examples in js and console.</p>
+        <pre>
+        let user = {
+            name: "John",
+            age: 30,
+        
+        sayHi() {
+        // "this" is the "current object"
+            alert(this.name);
+        }
+        
+        };
+        
+        user.sayHi(); // John
+        </pre>
+        <p>I was a bit confused to when you use parentheses in a method and when you don't. Here is an explanation:</p>
+        <p>In JavaScript, whether you use parentheses when dealing with functions and
+        methods depends on whether you want to reference the function itself or execute
+        (call) it.</p>
+        <p><strong>When to Use Parentheses:</strong></p>
+        <p>Calling a Function/Method</p>
+        <pre>
+        function greet() {
+            return "Hello!";
+        }
+        
+        greet(); // This calls the function and returns "Hello!"
+        </pre>
+        <p><strong>Assigning a Function as a Method:</strong>
+        Do not use parentheses when assigning a function to an object property or when
+        passing a function as a value.</p>
+        <pre>
+        let user2 = {
+            name: "Mila",
+            age: 43,
+            sayHello: // Assigning the function to the object property 'NO USE OF PARENTHESES'
+        };
+        
+        user2.sayHello(); // This calls the function assigned to sayHello 'USE PARENTHESES'
+        </pre>
+        <p>This is an object method. Since this refers to the object, you can use methods to get the instance of an
+        object.</p>
+        <p>On browsers, this is always set to Window in a simple function. The same is true
+        even if you call a simple function in an object method. </p>
+        <h3>This in arrow functions</h3>
+        <p>When the <strong>this</strong> keyword is refereeing to the window object, you can fix it with an arrow function. this in an arrow function is always the same as this around it (in its immediate
+        scope). So, if you use arrow functions within an object method, the this context
+        stays as the object, not Window.</p>
+        <pre>
+        const o = {
+           doSomethingLater() {
+             setTimeout(() => this.speakLeet(), 1000)
+           },
+           speakLeet() {
+             console.log(`1337 15 4W350M3`)
+           },
+        }
+        </pre>
+        <p>Another way to change the value of this within any function is to use either
+        bind, call or apply. We'll look at bind later in the article, and call and apply
+        another time. But first, let's go through the final context — event listeners.</p>
+        <h3>This in event listeners</h3>
+        <p>this is set to the element that fired the event in an event listener:</p>
+        <pre>
+        let button = document.querySelector('button')
+        
+        button.addEventListener('click', function () {
+            console.log(this) // button
+        })
+        </pre>
+        <button>Test</button>
+        <p>Event listeners within methods:</p>
+        <pre>
+        function LeetSpeaker(elem) {
+            return {
+              listenClick() {
+                elem.addEventListener('click', function () {
+        /       / Do something here
+                })
+            },
+            }
+        }
+        </pre>
+
+    </main>
+    <footer>
+        <p>&copy; <span id="date1"></span> | Camila Melo | WDD 330 | Last
+            updated:
+            <span id="date2"></span> | <a href="../index.html"
+                class="portal">Portal</a> 
+        </p>
+    </footer>
+    <script src="../script/date.js" defer></script>
+    <script src="taks07.js"></script>
+    
+</body>
+</html>
