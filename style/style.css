@@ -105,11 +105,64 @@ th {
     width: 40%;
     display: block;
 }
+#digit {
+    width: .5em;
+    overflow: hidden;
+    font: 32px monospace;
+    cursor: pointer;
+}
 
+#stripe {
+    display: inline-block
+}
 
+#stripe.animate {
+    transform: translate(-90%);
+    transition-property: transform;
+    transition-duration: 9s;
+    transition-timing-function: linear;
+}
 
+#boat {
+    margin-left: 0;
+    cursor: pointer;
+    transition: margin-left 3s ease-in-out;
+}
 
+/* flipping the picture with CSS */
+.back {
+    transform: scaleX(-1);
+    filter: flip;
+}
+/* Animation Task */
+ #flyjet {
+     width: 40px;
+     transition: all 3s;
+     /* -> 400px */
 
+     height: 24px;
+     /* -> 240px */
+ }
+
+#flyjet.growing {
+    width: 400px;
+    height: 240px;
+}
+.circle {
+    transition-property: width, height;
+    transition-duration: 2s;
+    
+    transform: translateX(-70%) translateY(-100%);
+    background-color: red;
+    border-radius: 50%;
+
+    width: 200px;
+    height: 200px;
+    inset: 0;
+}
+.circle.growing {
+    display: block;
+}
 
 /* Mobile View */
 @media only screen and (max-width: 600px) {

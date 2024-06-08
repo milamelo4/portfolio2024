@@ -1,3 +1,4 @@
+
 let user = {
     name: "John",
     age: 30
@@ -165,6 +166,10 @@ function Human(name) {
         }
     }
 }
+function sayThis() {
+  console.log(this);
+}
+const boundFunc = sayThis.bind(/* arguments...*/);
 const hum1 = new Human('Brittany')
 console.log(hum1.name)
 
@@ -198,3 +203,61 @@ let h = LeetSpeaker()
 // h.speakLeet();
 h.listenClick
 console.log(h)
+
+let aniBtn = document.querySelector('button')
+aniBtn.onclick = function() {
+   this.style.backgroundColor = 'red' // Or I could: aniBtn.style.backgroundColor = 'red' ( works the same )
+}
+
+
+stripe.onclick = function () {
+  let sec = new Date().getSeconds() % 10;
+  // for instance, -3s here starts the animation from the 3rd second
+  stripe.style.transitionDelay = "-" + sec + "s";
+  stripe.classList.add("animate");
+};
+
+// Boat Animation:
+boat.style.cursor = 'pointer'
+ boat.onclick = function () {
+   this.onclick = null; // only the first click should start the animation
+
+   let times = 1;
+
+   function go() {
+     if (times % 2) {
+       boat.classList.remove("back");
+       boat.style.marginLeft = 100 * times + 200 + "px";
+     } else {
+       boat.classList.add("back");
+       boat.style.marginLeft = 100 * times - 200 + "px";
+     }
+   }
+
+   go();
+
+   boat.addEventListener("transitionend", function () {
+     times++;
+     go();
+   });
+ };
+
+
+ flyjet.onclick = function() {
+    this.classList.add('growing')
+ }
+
+ function showCircle(cx, cy, radius) {
+    let div = document.createElement('div')
+    div.style.width = 0 
+    div.style.height = 0
+    div.style.left = cx + 'px'
+    div.style.top = cy + 'px'
+    div.className = 'circle'
+    document.body.append(div)
+
+    setTimeout(() => {
+        div.style.width = radius * 2 + 'px'
+        div.style.height = radius * 2 + 'px'
+    }, 0)
+ }
