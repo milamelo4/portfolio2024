@@ -160,6 +160,10 @@ th {
     height: 200px;
     inset: 0;
 }
+#authorize_button,
+#signout_button {
+    display: none;
+}
 .circle.growing {
     display: block;
 }

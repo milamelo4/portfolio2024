@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 08</title>
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="shortcut icon" href="../favicon-32x32.png" type="image/x-icon">
+</head>
+<body>
+    <main>
+        <h1>Week 08 Reading Notes</h1>
+        <h2>JSON Web Tokens</h2>
+        <p>JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and
+        self-contained way for securely transmitting information between parties as a
+        JSON object.</p>
+        <p>Web Token structure:</p>
+        <p>Three parts separated by dots (.):</p>
+        <ul>
+            <li>Header</li>
+            <li>Payload</li>
+            <li>Signature</li>
+        </ul>
+        <p>The <strong style="color: rgb(205, 139, 92);">header</strong> typically consists of two parts: the type of the token, which is JWT,
+        and the hashing algorithm such as HMAC SHA256 or RSA. Im familiar with SHA256.</p>
+        <pre>
+        {
+        'alg': 'HS256',
+        'typ': 'JWT'
+        }
+        </pre>
+        <p style="font-style: italic;">Then, this JSON is Base64Url encoded to form the first part of the JWT.</p>
+        <p>The <strong style="color: rgb(205, 139, 92);">payload</strong>, which contains the claims. Claims are statements about an entity
+        (typically, the user) and additional metadata. There are three types of claims:
+        reserved, public, and private claims.</p>
+        <p>Reserved: set of predefined claims, example: are: iss (issuer), exp (expiration time), sub (subject)</p>
+        <p>
+            Public claims: These can be defined at will by those using JWTs. But to avoid
+            collisions they should be defined in the IANA JSON Web Token Registry or be
+            defined as a URI that contains a collision resistant namespace.
+        </p>
+        <p>
+            Private claims: These are the custom claims created to share information between
+            parties that agree on using them.
+        </p>
+        <pre>
+        {
+        'sub': '1234567890',
+        'name': 'John Doe',
+        'admin': true
+        }
+        </pre>
+        <p style="font-style: italic;">The payload is then Base64Url encoded to form the second part of the JWT.</p>
+        <p>The <strong style="color: rgb(205, 139, 92);">signature</strong> part you have to take the encoded header, the encoded payload, a secret, the algorithm specified in the header, and sign that.</p>
+        <pre>
+        HMACSHA256(
+        base64UrlEncode(header) + '.' +
+        base64UrlEncode(payload),
+        secret)
+        </pre>
+        <p style="font-style: italic;">The signature is used to verify that the sender of the JWT is who it says it is
+        and to ensure that the message was't changed in the way.</p>
+        <p>Encoded Example:</p>
+        <p style="color:aqua;">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.</p>
+        <p style="color: rgb(213, 176, 249); margin-top: -20px;">eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.</p>
+        <p style="color: chartreuse; margin-top: -20px;">SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</p>
+        <h3>How JSON Web Tokens work?</h3>
+        <p>In authentication, when the user successfully logs in using their credentials, a
+        JSON Web Token will be returned. Since tokens are credentials, great care must
+        be taken to prevent security issues. In general, you should not keep tokens
+        longer than required.</p>
+        <p>Whenever the user wants to access a protected route, it should send the JWT,
+        typically in the Authorization header using the Bearer schema.</p>
+        <pre>
+        Authorization: Bearer &lt;token&gt;
+        </pre>
+        <p>JSON parsers are common in most programming languages, because they map directly
+        to objects, conversely XML doesn't have a natural document-to-object mapping.</p>
+        <h3>How we use JSON Web Tokens in Auth0?</h3>
+        <p>In Auth0, we issue JWTs as a result of the authentication process. When the user
+        logs in using Auth0, a JWT is created, signed, and sent to the user. Auth0
+        supports signing JWT with both HMAC and RSA algorithms. This token will be then
+        used to authenticate and authorize with APIs which will grant access to their
+        protected routes and resources.</p>
+        <p><a href="https://jwt.io/" target="_blank">Practice with JSON web tokens</a></p>
+     
+    </main>
+    <footer>
+        <p>&copy; <span id="date1"></span> | Camila Melo | WDD 330 | Last
+            updated:
+            <span id="date2"></span> | <a href="../index.html"
+                class="portal">Portal</a> <span>| <a href="https://auth0.com/learn/json-web-tokens?_ga=2.184084847.834837117.1611866055-1405126930.1611866055">JSON Web Tokens</a></span>
+        </p>
+    
+    </footer>
+    <script src="../script/date.js" defer></script>
+   
+    
+</body>
+</html>
