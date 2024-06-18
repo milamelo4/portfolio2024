@@ -168,6 +168,37 @@ th {
     display: block;
 }
 
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+}
+
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.day {
+    padding: 20px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.day.selected {
+    background-color: #f28b82;
+    color: white;
+}
+
 /* Mobile View */
 @media only screen and (max-width: 600px) {
 

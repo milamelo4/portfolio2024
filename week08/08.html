@@ -83,6 +83,29 @@
         used to authenticate and authorize with APIs which will grant access to their
         protected routes and resources.</p>
         <p><a href="https://jwt.io/" target="_blank">Practice with JSON web tokens</a></p>
+        <h1>TESTING</h1>
+        <div class="container">
+            <h1>Period Tracker</h1>
+            <div id="calendar"></div>
+            <div id="weather"></div>
+        </div>
+        <h1>Period tracker</h1>
+        <form>
+            <fieldset>
+                <legend>Enter your period start and end date</legend>
+                <p>
+                    <label for="start-date">Start date</label>
+                    <input type="date" id="start-date" required />
+                </p>
+                <p>
+                    <label for="end-date">End date</label>
+                    <input type="date" id="end-date" required />
+                </p>
+            </fieldset>
+            <p>
+                <button type="submit">Add Period</button>
+            </p>
+        </form>
      
     </main>
     <footer>
@@ -94,6 +117,7 @@
     <p></p>
     </footer>
     <script src="../script/date.js" defer></script>
+    <script src="script.js"></script>
     
 </body>
 </html>
