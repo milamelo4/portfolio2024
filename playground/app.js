@@ -35,7 +35,10 @@ function openModal(date) {
     backDrop.style.display = 'block'
 }
 
-
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("en-US", { timeZone: "UTC" });
+}
 
 // The months are number between 0 and 11 (January to December).
 
@@ -69,32 +72,43 @@ function load() {
   // Displaying Header Month 2024
   document.getElementById('monthDisplay').innerHTML = `
   ${dt.toLocaleDateString('en-us', { month: 'long' })} ${year}`
-
+  
     calendar.innerHTML = '' // Clear calendar
-
+ 
   for (let i = 1; i <= paddingDays + daysInMonth; i++) {
-    const daySquare = document.createElement('div')
-    daySquare.classList.add('day')
-    const dayString = `${month + 1}/${i - paddingDays}/${year}`
-
+    const daySquare = document.createElement("div");
+    daySquare.classList.add("day");
+    const dayString = `${month + 1}/${i - paddingDays}/${year}`;
+    // const m = (dayString.split('/')[0])
+    
+  //  if (i === day) {
+  //   daySquare.style.color = 'red'
+  //   console.log(day)
+  //   console.log(i)
+  //  }
+    
     if (i > paddingDays) {
-        daySquare.innerText = i - paddingDays
-        const eventForDay = events.find((e) => e.date == dayString);
+      daySquare.innerHTML = `${i - paddingDays}`;
+      const eventForDay = events.find((e) => e.date == dayString);
+     
+      if (i - paddingDays == day) { // current day display
+        daySquare.classList.add('currentDay')
+      }
+      
+        
+      
 
-        if (eventForDay) {
-            const eventDiv = document.createElement('div')
-            eventDiv.classList.add('event')
-            eventDiv.innerText = eventForDay.title
-            daySquare.appendChild(eventDiv)
-        }
-        daySquare.addEventListener('click', () => 
-            openModal(dayString)
-        )
+      if (eventForDay) {
+        const eventDiv = document.createElement("div");
+        eventDiv.classList.add("event");
+        eventDiv.innerText = eventForDay.title;
+        daySquare.appendChild(eventDiv);
+      }
+      daySquare.addEventListener("click", () => openModal(dayString));
+    } else {
+      daySquare.classList.add("padding");
     }
-    else {
-        daySquare.classList.add('padding')
-    }
-    calendar.appendChild(daySquare)
+    calendar.appendChild(daySquare);
   }
 }
 
