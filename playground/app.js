@@ -22,6 +22,8 @@ const weekdays = [
 
 function openModal(date) {
     clicked = date // Set which day the user clicked
+   
+    console.log(`start date: ${clicked}`)
       let s = calculatePredictions(date);
       console.log(s);
     const eventForDay = events.find((e) => e.date == clicked);
@@ -29,8 +31,10 @@ function openModal(date) {
     if (eventForDay) {
        document.getElementById('eventText').innerHTML = eventForDay.title
        deleteEventModal.style.display = 'block'
+       
     }else {
       newEventModal.style.display = 'block'  
+     
     }
     backDrop.style.display = 'block'
 }
@@ -120,10 +124,13 @@ function saveEvent() {
         title: eventTitleInput.value
     })
     localStorage.setItem('events', JSON.stringify(events))
+     document.getElementById("startDate").innerHTML = `
+    <li>Today is your first day</li>`;
   
     closeModal()
   } else {
     eventTitleInput.classList.add("error");
+     
   }
   console.log(events)
 }
@@ -140,6 +147,7 @@ function closeModal() {
 function deleteEvent() {
   events = events.filter((e) => e.date !== clicked);
   localStorage.setItem("events", JSON.stringify(events));
+  document.getElementById("startDate").innerHTML = "";
   closeModal();
 }
 
