@@ -10,14 +10,192 @@
 <body>
     <main>
         <h1>Week 09 Reading Notes</h1>
+        <h2>Variable scope, closure</h2>
+        <p>I'm familiar with variables and scope.</p>
+        <ul>
+            <li>var => Changes it's value when declared outside the loop then replaced inside the loop</li>
+            <li>let => Does not redeclare the value inside the loop</li>
+            <li>cost => Never changes its value</li>
+        </ul>
+        <h3>Code blocks:</h3>
+        <pre>
+        {
+        // do some job with local variables that should not be seen outside
+        let message = "Hello"; // only visible in this block
+        
+            alert(message); // Hello
+        }
+        alert(message); // Error: message is not defined ( Outside block )
+        </pre>
+        <p>This allows us to repeat same variable with different value, as long as they belong to their own block:</p>
+        <pre>
+        {
+            let message = "Hello";
+            alert(message); // Hello
+        }
+        {
+        // show another message
+            let message = "Goodbye";
+            alert(message); // Goodbye
+        }
+        </pre>
+        <script>
+            if (true) {
+                    let phrase = "Hello!";
+                    console.log(phrase); // Hello!
+                }
+                //console.log(phrase); // Error, no such variable! However, change to var and it works
+        </script>
+        <script>
+            for (let i = 0; i < 3; i++) {
+                    // the variable i is only visible inside this for
+                    console.log(i); // 0, then 1, then 2
+                }
+               // console.log(i); // Error, no such variable
+                // If we change to var the outer i returns the last value of i iteration 3.
+                // Or would be the same if we declare i outside the loop without an value
+        </script>
+        <h3>Nested Functions:</h3>
+        <pre>
+        function sayHiBye(fname, lname) {
+            function getFullName() {
+            return `${fname} ${lname}`
+        }
+        console.log(`Hello ${getFullName()}`)
+        console.log(`GoodBye ${getFullName()}`)
+        }
+        sayHiBye('mila', 'melo') // You have to call the outer func
+        </pre>
+        <script>
+            function sayHiBye(fname, lname) {
+                function getFullName() {
+                    return `${fname} ${lname}`
+                }
+                console.log(`Hello ${getFullName()}`)
+                console.log(`GoodBye ${getFullName()}`)
+            }
+            sayHiBye('mila', 'melo') // You have to call the outer func
+        </script>
+        <p>What's much more interesting, a nested function can be returned: either as a
+        property of a new object or as a result by itself. It can then be used somewhere
+        else. No matter where, it still has access to the same outer variables.</p>
+        <pre>
+        function makeCounter() {
+            let count = 0;
+            return function() {
+                return count++;
+            };
+        }
+        
+        let counter = makeCounter();
+        console.log(counter()) // 0
+        console.log(counter()) // 1
+        console.log(counter()) // 2
+        </pre>
+        <h2>Lexical Environment</h2>
+        <p>In JavaScript, every running function, code block {...}, and the script as a
+        whole have an internal (hidden) associated object known as the Lexical
+        Environment.</p>
+        <p>The Lexical Environment object consists of two parts:</p>
+        <ol>
+            <li>
+                Environment Record - an object that stores all local variables as its properties
+                (and some other information like the value of this).
+            </li>
+            <li>
+                A reference to the outer lexical environment, the one associated with the outer
+                code.
+            </li>
+        </ol>
+        <p>A “variable” is just a property of the special internal object, Environment
+        Record. “To get or change a variable” means “to get or change a property of that
+        object”.</p>
+        <div class="lixical-img">
+            <img src="https://javascript.info/article/closure/lexical-environment-global.svg" alt="https://javascript.info/closure">
+        </div>
+        <p>This is the so-called global Lexical Environment, associated with the whole
+        script. On the picture above, the rectangle means Environment Record (variable store)
+        and the arrow means the outer reference. The global Lexical Environment has no
+        outer reference, that's why the arrow points to null.</p>
+        <p>As the code starts executing and goes on, the Lexical Environment changes.</p>
+        <div class="lixical-img">
+            <img src="https://javascript.info/article/closure/closure-variable-phrase.svg"
+                alt="https://javascript.info/closure">
+        </div>
+        <p>The uninitialized state knows about the variables but it cant reference until declared. We can see this bette happening debugging, watch for the variable and their states on the right hand side.</p>
+        <h3>Function Declarations</h3>
+        <p>This is knew to me: A function is also a value, like a variable.
+        The difference is that a Function Declaration is instantly fully initialized.
+        When a Lexical Environment is created, a <strong>unction Declaration immediately
+        becomes a ready-to-use function</strong> (unlike let, that is unusable till the
+        declaration).</p>
+        <div class="lixical-img">
+            <img src="https://javascript.info/article/closure/closure-function-declaration.svg"
+                alt="https://javascript.info/closure">
+        </div>
+        <p><strong>Note:</strong>This only applies to Function declarations, and not expressions, where the function has been declared by a variable; let say = function(name).</p>
+        <h3>Inner and outer Lexical Environment</h3>
+        <p>During the function call we have two Lexical Environments: the inner one (for
+        the function call) and the outer one (global):</p>
+        <div class="lixical-img">
+            <img src="https://javascript.info/article/closure/lexical-environment-simple.svg"
+                alt="https://javascript.info/closure">
+        </div>
+        <p><i>When the code wants to access a variable - the inner Lexical Environment is
+        searched first, then the outer one, then the more outer one and so on until the
+        global one.</i></p>
+        <div class="lixical-img">
+            <img src="https://javascript.info/article/closure/lexical-environment-simple-lookup.svg"
+                alt="https://javascript.info/closure">
+        </div>
+        <script>
+            function f() {
+                let value = Math.random();
 
+                function g() {
+                    debugger; // in console: type alert(value); No such variable!
+                }
+
+                return g;
+            }
+
+            let g = f();
+            g();
+        </script>
+        <div>
+            <p><a href="https://codepen.io/milamelo4/pen/dyEdLVz">Tasks for Variable scope, closure</a></p>
+        </div>
+        <h2>Currying</h2>
+        <p>Currying is an advanced technique of working with functions.</p>
+        <script>
+            function curry(f) { // curry(f) does the currying transform
+                    return function (a) {
+                        return function (b) {
+                            return f(a, b); // Note that the f has to match the arg passed in curry
+                        };
+                    };
+                }
+
+                // usage
+                function sum(a, b) {
+                    return a + b;
+                }
+                
+
+                let curriedSum = curry(sum);
+                //console.log(curriedSum(1)(2)) // 3
+        </script>
+        <p>I definitely need to look for more information on this topic. The reading material was a bit confusing.</p>
+        <h2>Canvas examples:</h2>
+            <a href="https://codepen.io/milamelo4/pen/rNgJbgW">Drawing graphics</a>
+        <p>Canvas animation: <a href="animation.html">Canvas</a> </p>   
     </main>
     <footer>
         <p>&copy; <span id="date1"></span> | Camila Melo | WDD 330 | Last
             updated:
             <span id="date2"></span> | <a href="../index.html"
                 class="portal">Portal</a> <span>| <a
-                    href="https://auth0.com/learn/json-web-tokens?_ga=2.184084847.834837117.1611866055-1405126930.1611866055">JSON
+                    href="">JSON
                     Web Tokens</a></span>
         </p>
     </footer>
