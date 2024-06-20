@@ -15,11 +15,13 @@
     /* Fonts */
     --heading-font: 'Courier New', Courier, monospace
  }
+ body {
+    background-color: #ecf1f5;
+ }
 .body {
     display: flex;
     margin-top: 50px;
     justify-content: center;
-    background-color: #FFFCFF;
     scroll-behavior: smooth;
     
 }
@@ -32,7 +34,7 @@ button {
     outline: none;
     padding: 5px;
     border-radius: 5px;
-    color: white;
+    
 }
 
 #header {

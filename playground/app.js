@@ -213,28 +213,60 @@ load();
 //   //console.error(error);
 // }
 // }
-const initUrl =
-  "https://womens-health-menstrual-cycle-phase-predictions-insights.p.rapidapi.com/initialize"; // Hypothetical endpoint
-const initOptions = {
-  method: "GET",
-  headers: {
-    "x-rapidapi-key": "0284d7a3d8msh91349f8ed98628fp10b989jsn217fb3020db3",
-    "x-rapidapi-host":
-      "womens-health-menstrual-cycle-phase-predictions-insights.p.rapidapi.com",
-  },
-};
+// const initUrl =
+//   "https://womens-health-menstrual-cycle-phase-predictions-insights.p.rapidapi.com/initialize"; // Hypothetical endpoint
+// const initOptions = {
+//   method: "GET",
+//   headers: {
+//     "x-rapidapi-key": "0284d7a3d8msh91349f8ed98628fp10b989jsn217fb3020db3",
+//     "x-rapidapi-host":
+//       "womens-health-menstrual-cycle-phase-predictions-insights.p.rapidapi.com",
+//   },
+// };
 
-async function fetchRequestId() {
-  try {
-    const initResponse = await fetch(initUrl, initOptions);
-    const initResult = await initResponse.json();
-    console.log(initResult); // Check the response structure
-    return initResult.request_id; // Adjust based on actual response structure
-  } catch (error) {
-    console.error("Error fetching request_id:", error);
-  }
-}
+// async function fetchRequestId() {
+//   try {
+//     const initResponse = await fetch(initUrl, initOptions);
+//     const initResult = await initResponse.json();
+//     console.log(initResult); // Check the response structure
+//     return initResult.request_id; // Adjust based on actual response structure
+//   } catch (error) {
+//     console.error("Error fetching request_id:", error);
+//   }
+// }
 
 
 //fetchRequestId();
 //testing()
+// const url =
+//   "https://womens-health-menstrual-cycle-phase-predictions-insights.p.rapidapi.com/process_cycle_data";
+// const options = {
+//   method: "POST",
+//   headers: {
+//     "x-rapidapi-key": "0284d7a3d8msh91349f8ed98628fp10b989jsn217fb3020db3",
+//     "x-rapidapi-host":
+//       "womens-health-menstrual-cycle-phase-predictions-insights.p.rapidapi.com",
+//     "Content-Type": "application/json",
+//   },
+//   body: JSON.stringify({
+//     current_date: formatDate(new Date()),
+//     past_cycle_data: [
+//       {
+//         cycle_start_date: 7,
+//         period_length: 0,
+//       },
+//     ],
+//     max_cycle_predictions: 0,
+//   }),
+// };
+
+// async function test() {
+//   try {
+//     const response = await fetch(url, options);
+//     const result = await response.text();
+//     console.log(result);
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
+// test()
