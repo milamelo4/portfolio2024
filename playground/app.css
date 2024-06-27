@@ -1,28 +1,40 @@
-/* * {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    --font: ;
-    
-} */
+ @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Playwrite+NG+Modern:wght@100..400&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&family=Playwrite+MX:wght@100..400&family=Playwrite+NG+Modern:wght@100..400&display=swap');
  :root {
     /* Colors */
-    --calendar-color: #f8deff;
-    --header-color: #e24024;
-    --btn-background: rgb(36, 123, 160);
+    --calendar-color: #ceaad8;
+    --header-color: #7c2213;
+    --btn-background: #154a60;
     --day-hover: #ffc6c2;
     --current-day: #d0d9f6b7;
-    --calendar-days: #145697;
+    --calendar-days: #346597;
 
     /* Fonts */
-    --heading-font: 'Courier New', Courier, monospace
+    --heading-font: 'Courier New', Courier, monospace;
+    --nunito-sans: "Nunito Sans", sans-serif;
+    --header: "Playwrite NG Modern", cursive;
+    --test: "Playwrite DE Grund",
+        cursive;
+    
  }
- body {
-    background-color: #ecf1f5;
+ body,
+ html {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     height: fit-content;
  }
+
+
+
+
 .body {
     display: flex;
     margin-top: 50px;
     justify-content: center;
     scroll-behavior: smooth;
+    font-family: var(--nunito-sans);
     
 }
 
@@ -41,11 +53,46 @@ button {
     padding: 10px;
     color: var(--header-color);
     font-size: 26px;
-    font-family: var(--heading-font);
     display: flex;
     justify-content: space-between;
     font-weight: 800;
 }
+ .drop {
+    display: block;
+     width: 15px;
+     height: 15px;
+     fill: var(--calendar-color);
+     stroke: black;
+     stroke-width: 5px;
+ }
+ /* body {
+    position: relative;
+   
+ 
+ } */
+ h1 {
+   display: block;
+   padding: 2%;
+   margin-top: 0;
+   text-align: center;
+   font-family: var(--test);
+   color: var(--btn-background);
+  
+
+ }
+
+ .bg{
+    position: relative;
+    background-image: url('pexels-pixabay-262713.jpg');
+    background-size: 100% 200%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    background-size: cover;
+    height: 1000px;
+    background-color: rgba(0, 0, 0, 0)
+ }
+
 
 #header button, button {
     background-color: var(--btn-background);
@@ -57,14 +104,20 @@ button {
         background-color: white;
         color: var(--btn-background);
         box-shadow: 0 0 10px var(--btn-background);
+        font-weight: 600;
         transition: all .3s ease;
     }
 }
 
 #container {
+    z-index: 99999;
+    position: absolute;
+    top: 10%;
     width: 700px;
+    height: fit-content;
     background-color: var(--calendar-color);
-    padding: 1%;
+    padding: 2% 1%;
+    
     
 }
 
@@ -73,10 +126,12 @@ button {
     display: flex;
     margin: auto;
     color: var(--btn-background);
-    font-weight: 700;
+    font-weight: 800;
     font-size: 18px;
     text-align: center; 
-    justify-content: space-between;   
+    justify-content: space-between; 
+  
+   
 }
 
 #weekdays div {
