@@ -9,14 +9,14 @@
     <link rel="shortcut icon" href="../favicon-32x32.png" type="image/x-icon">
 </head>
 <script>
-    function copyArrayManipulate(array, instructions) {
+    function copyArrayManipulate(array, instructions) { // higher order function ( Takes in a function or passes out a function )
         let output = []
         for (let i=0; i < array.length; i++) {
-            output.push(instructions(array[i]))
+            output.push(instructions(array[i])) // instruction is not a function, is a parameter(placeholder) which it was used to  pass another function
         }
         return output
     }
-    function multiBy2(input) {
+    function multiBy2(input) { // Callback function
         return input * 2
     }
     let result = copyArrayManipulate([1,2,3], multiBy2)
