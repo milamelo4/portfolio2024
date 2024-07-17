@@ -24,7 +24,7 @@ h1, h2, h3 {
 }
 body {
     font-family: var(--body-font);
-    width: 70em;
+    width: 95em;
     margin-inline: auto;
     max-width: 100%;
     box-sizing: border-box;
@@ -33,16 +33,16 @@ body {
 }
 main {
     background-color: var(--sage-color);
-    inline-size: 40em;
+    inline-size: 45em;
     margin-inline: auto;
-    padding: 2% 3%;
+    padding: 2% 2%;
     max-width: 100%;
 }
 .lessons {
     background-color: var(--cream-color);
-    /* width: 20em; */
+    width: 35.9em;
     border-radius: 5px;
-    padding: 2%;
+    padding: 2% 0;
     font-size: 20px;
     color: var(--sage-color);
     line-height: 1.7em;
@@ -55,6 +55,7 @@ main {
 }
 ul {
     list-style: none;
+    margin-left: -15px;
 }
 li a {
     text-decoration: none;
@@ -62,7 +63,8 @@ li a {
     font-weight: 700;
     transition: all .5s ease;
     padding: 1%;
-    
+    margin-left: -5px;
+   
 }
 li a:hover {
 

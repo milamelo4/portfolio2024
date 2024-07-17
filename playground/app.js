@@ -27,7 +27,7 @@ function openModal(date) {
       let s = calculatePredictions(date);
       console.log(s);
     const eventForDay = events.find((e) => e.date == clicked);
-
+    console.log(eventForDay);
     if (eventForDay) {
        document.getElementById('eventText').innerHTML = eventForDay.title
        deleteEventModal.style.display = 'block'
@@ -71,7 +71,7 @@ function load() {
   //console.log(dateString); // Saturday, 6/1/2024. We need the long format for weekday.
   // weekdays = Saturday, 6/1/2024, split at the comma and return the value at index 0, = 6
   const paddingDays = weekdays.indexOf(dateString.split(", ")[0]);
-  //console.log(paddingDays);
+  console.log(`padding ${paddingDays}`);
 
   // Displaying Header Month 2024
   document.getElementById('monthDisplay').innerHTML = `
@@ -83,6 +83,7 @@ function load() {
     const daySquare = document.createElement("div");
     daySquare.classList.add("day");
     const dayString = `${month + 1}/${i - paddingDays}/${year}`;
+    console.log(dayString)
     // const m = (dayString.split('/')[0])
     
   //  if (i === day) {
